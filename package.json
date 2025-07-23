@@ -1,0 +1,37 @@
+{
+  "name": "job-bid-bot",
+  "version": "1.0.0",
+  "description": "Job application automation bot with hCaptcha solving",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist",
+    "scrape-jobs": "npx ts-node src/scrapeJobs.ts",
+    "auto-apply": "npx ts-node src/autoApply.ts start",
+    "auto-apply-resume": "npx ts-node src/autoApply.ts resume",
+    "auto-apply-status": "npx ts-node src/autoApply.ts status"
+  },
+  "keywords": [
+    "automation",
+    "job-application",
+    "puppeteer",
+    "captcha"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "axios": "^1.10.0",
+    "dotenv": "^17.0.0",
+    "form-data": "^4.0.3",
+    "fs-extra": "^11.3.0",
+    "puppeteer-real-browser": "^1.4.2"
+  }
+}
