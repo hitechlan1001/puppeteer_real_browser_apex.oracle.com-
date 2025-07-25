@@ -13,7 +13,7 @@ PASSWORD = os.getenv("PASSWORD")
 LOGIN_URL = "https://apex.oracle.com/pls/apex/r/kobilicaana/nyc-schools/login"
 RECAPTCHA_TOKEN_URL = "https://8748d49155d2.ngrok-free.app/get-recaptcha-token"
 
-with SB(headless=False, chromium_arg='--disable-http2 --disable-quic') as sb:
+with SB(headless=True, uc = True) as sb:
 
     print("🚀 Starting script...")
 
@@ -35,7 +35,6 @@ with SB(headless=False, chromium_arg='--disable-http2 --disable-quic') as sb:
         print("🔍 Token input element is present in the DOM")
     except Exception as e:
         print("❌ Token input not present:", e)
-
 
     # Fetch token from server
     token = None
@@ -67,20 +66,21 @@ with SB(headless=False, chromium_arg='--disable-http2 --disable-quic') as sb:
             print("❌ Token injection error:", e)
     else:
         print("⚠️ No token to inject")
-        
+
     # Click sign-in button
     try:
         sb.wait_for_element_visible("#B37617865385418101063", timeout=10)
+        # sb.execute_script('document.querySelector("#B37617865385418101063").click();')
         sb.click("#B37617865385418101063")
         print("✅ Clicked Sign In")
     except Exception as e:
         print("❌ Login click failed:", e)
-    # # Keep browser open
+    # Keep browser open
     # print("🕒 Waiting indefinitely to keep browser open. Press CTRL+C to quit.")
     # while True:
     #     time.sleep(60)
     try:
-        sb.wait_for_element_visible("css selector for home page element", timeout=15)
+        sb.wait_for_element_visible("#P1_SCORE", timeout=15)
         print("✅ Successfully reached home page")
     except Exception as e:
         print("❌ Failed to reach home page:", e)
